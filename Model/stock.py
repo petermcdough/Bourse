@@ -3,7 +3,6 @@
 """
 Created on Sun Jun 10 18:58:42 2018
 
-@author: hugofayolle
 """
 
 import datetime

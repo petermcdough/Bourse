@@ -3,6 +3,5 @@
 """
 Created on Sun Jun 10 20:22:57 2018
 
-@author: hugofayolle
 """
 

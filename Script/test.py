@@ -1,17 +1,20 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
 Created on Sat Jun 23 12:42:54 2018
 
-@author: hugofayolle
 """
 
 import sys
 import quandl
 import dill as pickle
 import numpy as np
+import os
 
-sys.path.insert(0, "/Users/hugofayolle/Desktop/Bourse/Bourse_test/")
+if '/Users/' in os.getcwd():
+    sys.path.insert(0, os.path.expanduser("~/Documents/GitHub/Bourse/"))
+elif '/home/' in os.getcwd():
+    sys.path.insert(0, "/home/petermcdough/Bourse/")
 
 from functools import partial
 from Model.env import Env

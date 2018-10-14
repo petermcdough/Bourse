@@ -3,7 +3,6 @@
 """
 Created on Tue Jul 31 12:23:44 2018
 
-@author: hugofayolle
 """
 
 from Model.constants import ENVIRONMENT, SAVE_FOLDER

@@ -3,7 +3,6 @@
 """
 Created on Sun Jun 10 18:49:39 2018
 
-@author: hugofayolle
 """
 
 from enum import Enum

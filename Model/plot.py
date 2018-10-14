@@ -3,7 +3,6 @@
 """
 Created on Sun Jun 10 18:53:08 2018
 
-@author: hugofayolle
 """
 
 import matplotlib.pyplot as plt  # handles plots

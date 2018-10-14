@@ -3,7 +3,6 @@
 """
 Created on Sat Jul  7 12:02:02 2018
 
-@author: hugofayolle
 """
 
 from Model.constants import MARKET, START_DATE

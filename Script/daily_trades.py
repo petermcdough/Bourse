@@ -3,16 +3,20 @@
 """
 Created on Wed Oct  3 20:32:34 2018
 
-@author: hugofayolle
 """
+
 import quandl
 import sys
 import smtplib
 import base64
+import os
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-sys.path.insert(0, "/Users/hugofayolle/Desktop/Bourse/Bourse_test/")
+if '/Users/' in os.getcwd():
+    sys.path.insert(0, os.path.expanduser("~/Documents/GitHub/Bourse/"))
+elif '/home/' in os.getcwd():
+    sys.path.insert(0, "/home/petermcdough/Bourse/")
 
 from Model.constants import API_KEY, SELECTED_STRATEGY, EMAIL, PWD
 from Model.exploration import load_stocks, get_strategy, refresh_stocks

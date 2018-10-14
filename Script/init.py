@@ -1,16 +1,19 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
 Created on Sun Jun 10 18:51:26 2018
 
-@author: hugofayolle
 """
 
 import quandl                              # handles api calls
 import sys
 import datetime
+import os
 
-sys.path.insert(0, "/Users/hugofayolle/Desktop/Bourse/Bourse_test/")
+if '/Users/' in os.getcwd():
+    sys.path.insert(0, os.path.expanduser("~/Documents/GitHub/Bourse/"))
+elif '/home/' in os.getcwd():
+    sys.path.insert(0, "/home/petermcdough/Bourse/")
 
 from Model.codes import Codes
 from Model.constants import API_KEY        

@@ -1,9 +1,8 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
 Created on Sun Sep 30 19:27:03 2018
 
-@author: hugofayolle
 """
 
 import quandl                              # handles api calls
@@ -11,7 +10,10 @@ import sys
 import os
 import numpy as np
 
-sys.path.insert(0, "/Users/hugofayolle/Desktop/Bourse/Bourse_test/")
+if '/Users/' in os.getcwd():
+    sys.path.insert(0, os.path.expanduser("~/Documents/GitHub/Bourse/"))
+elif '/home/' in os.getcwd():
+    sys.path.insert(0, "/home/petermcdough/Bourse/")
 
 from functools import partial
 from Model.env import Env

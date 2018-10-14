@@ -3,7 +3,6 @@
 """
 Created on Thu Aug  2 12:21:51 2018
 
-@author: hugofayolle
 """
 
 from Model.file import File

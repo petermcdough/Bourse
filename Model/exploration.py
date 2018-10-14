@@ -3,7 +3,6 @@
 """
 Created on Thu Jul  5 20:51:18 2018
 
-@author: hugofayolle
 """
 
 from Model.codes import Codes
