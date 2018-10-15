@@ -19,7 +19,8 @@ class Indicator(File):
         
     def __eq__(self, other):
         if isinstance(other, Indicator):
-            return  self.name == other.name \
+            return  super().__eq__(other) \
+                    and self.name == other.name \
                     and self.history == other.history
         return False
                 

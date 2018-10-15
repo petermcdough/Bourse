@@ -41,7 +41,8 @@ class Stock(File):
                 is_data_equal = is_data_equal and self.data[column].equals(other.data[column])
             for column in other.data.columns:
                 is_data_equal = is_data_equal and self.data[column].equals(other.data[column])
-            return  is_data_equal \
+            return super().__eq__(other) \
+                    and is_data_equal \
                     and self.code == other.code \
                     and self.full_code == other.full_code \
                     and self.first_date == other.first_date \

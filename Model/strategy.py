@@ -23,7 +23,8 @@ class Strategy(File):
         
     def __eq__(self, other):
         if isinstance(other, Strategy):
-            return  self.trades == other.trades \
+            return  super().__eq__(other) \
+                    and self.trades == other.trades \
                     and self.name == other.name \
                     and self.history == other.history \
                     and self.last_status == other.last_status

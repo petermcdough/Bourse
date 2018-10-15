@@ -30,12 +30,10 @@ class File:
             
     def __eq__(self, other):
         if isinstance(other, File):
-            return  self.name == other.name \
+            return self.name == other.name \
                     and self.type == other.type \
                     and self.env == other.env \
-                    and self.filename == other.filename \
-                    and self.folder == other.folder \
-                    and self.path == other.path
+                    and self.filename == other.filename
         return False
         
     def __repr__(self):

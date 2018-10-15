@@ -10,6 +10,7 @@ import quandl
 import dill as pickle
 import numpy as np
 import os
+import base64
 
 if '/Users/' in os.getcwd():
     sys.path.insert(0, os.path.expanduser("~/Documents/GitHub/Bourse/"))
@@ -17,6 +18,7 @@ elif '/home/' in os.getcwd():
     sys.path.insert(0, "/home/petermcdough/Bourse/")
 
 from functools import partial
+from Model.email import AdvisorEmail, User
 from Model.env import Env
 from Model.stock import Stock
 from Model.indicator import Indicator
@@ -37,7 +39,9 @@ from Model.constants import \
         TEST_REFRESH_DATE_AWAITING_BUY_2, \
         TEST_REFRESH_DATE_AWAITING_SELL_1, \
         TEST_REFRESH_DATE_AWAITING_SELL_2, \
-        TEST_REFRESH_DATE_PASS
+        TEST_REFRESH_DATE_PASS, \
+        EMAIL, \
+        PWD
         
 EMPTY_STOCK = pickle.load(open(TEST_FOLDER + "empty_stock.p", "rb" ))
 REFRESHED_EMPTY_STOCK = pickle.load(open(TEST_FOLDER + "refreshed_empty_stock.p", "rb" ))
@@ -190,6 +194,19 @@ def strategy_pass():
     test.refresh([stock])
     compare(test, STRATEGY_PASS, "Pass strategy")
     
+def send_email():
+    test = AdvisorEmail(
+                from_ = User(email = EMAIL, password = base64.b64decode(PWD).decode('utf-8'), name = 'Stock Advisor'), \
+                to = EMAIL,
+                strategy_name = 'SMA80_SMA150', \
+                stocks_to_buy = ['test_stock_to_buy'], \
+                stocks_to_sell = ['test_stock_to_sell'])
+    test.send()
+    if test.sent:
+        print("Email sent: ok")
+    else:
+        sys.exit("Email sent: nok")
+    
 def main():
     quandl.ApiConfig.api_key = API_KEY
     
@@ -209,6 +226,7 @@ def main():
         strategy_awaiting_buy()         
         strategy_awaiting_sell()
         strategy_pass()
+        send_email()
 
 if __name__ == "__main__":
     main()

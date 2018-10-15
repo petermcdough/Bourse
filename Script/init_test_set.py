@@ -187,7 +187,7 @@ def init_strategy_pass():
     stock.add_indicator('SMA150')
     strategy = Strategy('SMA80_SMA150', test_buy_condition, test_sell_condition)
     strategy.refresh([stock])
-    os.rename(strategy.path, TEST_FOLDER + 'strategy_pass.p')
+    os.rename(strategy.path, TEST_FOLDER + 'strategy_pass.p')    
               
 def main():
     quandl.ApiConfig.api_key = API_KEY
