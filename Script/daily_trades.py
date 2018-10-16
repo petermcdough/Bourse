@@ -29,7 +29,7 @@ def main():
     email = AdvisorEmail( \
                 from_ = User(email = EMAIL, password = base64.b64decode(PWD).decode('utf-8'), name = 'Stock Advisor'), \
                 to = EMAIL,
-                strategy = SELECTED_STRATEGY, \
+                strategy_name = SELECTED_STRATEGY, \
                 stocks_to_buy = [trade.stock for trade in buy], \
                 stocks_to_sell = [trade.stock for trade in sell])
     email.send()

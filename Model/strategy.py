@@ -9,6 +9,7 @@ from Model.file import File
 from Model.trade import Trade, open_trade
 
 import pandas as pd
+import numpy as np
 
 class Strategy(File):
     def __init__(self, name, buy_condition, sell_condition, description = ''):

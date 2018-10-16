@@ -66,7 +66,7 @@ def TEST_BUY_CONDITION(stock, row):
     date = None
     price = None
     status = None
-    if np.isnan(row.SMA80) or np.isnan(row.SMA150):
+    if str(row.SMA80) == 'nan' or str(row.SMA150) == 'nan':
         state = True
     else:
         state = row.SMA80 > row.SMA150
