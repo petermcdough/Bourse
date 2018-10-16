@@ -22,7 +22,7 @@ TAX = 0.0004                     # tax (percentage) applied when buying / sellin
 FIGSIZE = (15,6)                 # dimensions of plots
 TEST_FOLDER = SAVE_FOLDER + "Test/Test_set/"
 START_DATE = "2014-01-01"
-ENVIRONMENT = Env.DEV
+ENVIRONMENT = Env.TEST
 SELECTED_STRATEGY = 'SMA80_SMA150'
 EMAIL = 'fdjc6590@gmail.com'
 PWD = 'cEFzU3cwcmQ='

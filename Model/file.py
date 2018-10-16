@@ -22,9 +22,10 @@ class File:
         else:
             self.type = class_type
         self.env = ENVIRONMENT
-        self.filename = self.env.value + self.type + "/" + self.name + ".p"
-        self.folder = SAVE_FOLDER
-        self.path = self.folder + self.filename
+        self.path = self.env.value + self.type + "/" + self.name + '.p'
+        #self.filename = self.env.value + self.type + "/" + self.name + ".p"
+        #self.folder = SAVE_FOLDER
+        #self.path = self.folder + self.filename
         self.creation_date = pd.to_datetime(datetime.datetime.now().replace(microsecond = 0))
         self.last_update = self.creation_date
             
@@ -32,8 +33,8 @@ class File:
         if isinstance(other, File):
             return self.name == other.name \
                     and self.type == other.type \
-                    and self.env == other.env \
-                    and self.filename == other.filename
+                    and self.env == other.env
+                    #and self.filename == other.filename
         return False
         
     def __repr__(self):
@@ -46,10 +47,10 @@ class File:
         os.remove(self.path)
 
     def load(self):
-        return pickle.load(open(self.path, "rb" ))
+        return pickle.load(open(SAVE_FOLDER + self.path, "rb" ))
 
     def save(self, obj):
-        pickle.dump(obj, open(self.path, "wb" ))
+        pickle.dump(obj, open(SAVE_FOLDER + self.path, "wb" ))
         self.last_update = pd.to_datetime(datetime.datetime.now().replace(microsecond = 0))
         
     def get_attributes(self):

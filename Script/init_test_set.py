@@ -35,7 +35,8 @@ from Model.constants import \
         TEST_REFRESH_DATE_AWAITING_BUY_2, \
         TEST_REFRESH_DATE_AWAITING_SELL_1, \
         TEST_REFRESH_DATE_AWAITING_SELL_2, \
-        TEST_REFRESH_DATE_PASS
+        TEST_REFRESH_DATE_PASS, \
+        SAVE_FOLDER 
 
 def sma(df, window, column = 'CLOSE'):
     return df[column].rolling(window = window).mean()
@@ -83,17 +84,17 @@ def test_sell_condition(stock, row, trade):
 
 def init_empty_stock():
     stock = Stock(TEST_STOCK)
-    os.rename(stock.path, TEST_FOLDER + 'empty_stock.p')
+    os.rename(SAVE_FOLDER + stock.path, TEST_FOLDER + 'empty_stock.p')
 
 def init_refreshed_empty_stock():
     stock = Stock(TEST_STOCK)
     stock.refresh(to_date = TEST_REFRESH_DATE_EMPTY)
-    os.rename(stock.path, TEST_FOLDER + 'refreshed_empty_stock.p')
+    os.rename(SAVE_FOLDER + stock.path, TEST_FOLDER + 'refreshed_empty_stock.p')
     
 def init_refreshed_not_empty_stock():
     stock = Stock(TEST_STOCK)
     stock.refresh(to_date = TEST_REFRESH_DATE_NOT_EMPTY)
-    os.rename(stock.path, TEST_FOLDER + 'refreshed_not_empty_stock.p')
+    os.rename(SAVE_FOLDER + stock.path, TEST_FOLDER + 'refreshed_not_empty_stock.p')
     
 def init_refreshed_stock_with_indicators():
     stock = Stock(TEST_STOCK)
@@ -102,7 +103,7 @@ def init_refreshed_stock_with_indicators():
     Indicator('SMA150', partial(SMA.execute, window = 150))
     stock.add_indicator('SMA80')
     stock.add_indicator('SMA150')
-    os.rename(stock.path, TEST_FOLDER + 'refreshed_stock_with_indicators.p')
+    os.rename(SAVE_FOLDER + stock.path, TEST_FOLDER + 'refreshed_stock_with_indicators.p')
     
 def init_stock_with_indicators():
     stock = Stock(TEST_STOCK)
@@ -111,16 +112,16 @@ def init_stock_with_indicators():
     Indicator('SMA150', partial(SMA.execute, window = 150))
     stock.add_indicator('SMA80')
     stock.add_indicator('SMA150')
-    os.rename(stock.path, TEST_FOLDER + 'stock_with_indicators.p')
-    os.rename(indicator.path, TEST_FOLDER + 'applied_indicator.p')
+    os.rename(SAVE_FOLDER + stock.path, TEST_FOLDER + 'stock_with_indicators.p')
+    os.rename(SAVE_FOLDER + indicator.path, TEST_FOLDER + 'applied_indicator.p')
     
 def init_empty_indicator():
     indicator = Indicator('SMA80', partial(SMA.execute, window = 80))
-    os.rename(indicator.path, TEST_FOLDER + 'empty_indicator.p')
+    os.rename(SAVE_FOLDER + indicator.path, TEST_FOLDER + 'empty_indicator.p')
     
 def init_empty_strategy():
     strategy = Strategy('SMA80_SMA150', test_buy_condition, test_sell_condition)
-    os.rename(strategy.path, TEST_FOLDER + 'empty_strategy.p')
+    os.rename(SAVE_FOLDER + strategy.path, TEST_FOLDER + 'empty_strategy.p')
     
 def init_applied_strategy():
     stock = Stock(TEST_STOCK)
@@ -131,8 +132,8 @@ def init_applied_strategy():
     stock.add_indicator('SMA150')
     strategy = Strategy('SMA80_SMA150', test_buy_condition, test_sell_condition)
     strategy.refresh([stock])
-    os.rename(strategy.path, TEST_FOLDER + 'applied_strategy.p')
-    os.rename(stock.path, TEST_FOLDER + 'stock_with_applied_strategy.p')
+    os.rename(SAVE_FOLDER + strategy.path, TEST_FOLDER + 'applied_strategy.p')
+    os.rename(SAVE_FOLDER + stock.path, TEST_FOLDER + 'stock_with_applied_strategy.p')
         
 def init_strategy_awaiting_buy_before():
     stock = Stock(TEST_AWAITING_TRADE_STOCK)
@@ -143,7 +144,7 @@ def init_strategy_awaiting_buy_before():
     stock.add_indicator('SMA150')
     strategy = Strategy('SMA80_SMA150', test_buy_condition, test_sell_condition)
     strategy.refresh([stock])
-    os.rename(strategy.path, TEST_FOLDER + 'strategy_awaiting_buy_before.p')
+    os.rename(SAVE_FOLDER + strategy.path, TEST_FOLDER + 'strategy_awaiting_buy_before.p')
     
 def init_strategy_awaiting_buy_after():
     stock = Stock(TEST_AWAITING_TRADE_STOCK)
@@ -154,7 +155,7 @@ def init_strategy_awaiting_buy_after():
     stock.add_indicator('SMA150')
     strategy = Strategy('SMA80_SMA150', test_buy_condition, test_sell_condition)
     strategy.refresh([stock])
-    os.rename(strategy.path, TEST_FOLDER + 'strategy_awaiting_buy_after.p')
+    os.rename(SAVE_FOLDER + strategy.path, TEST_FOLDER + 'strategy_awaiting_buy_after.p')
     
 def init_strategy_awaiting_sell_before():
     stock = Stock(TEST_AWAITING_TRADE_STOCK)
@@ -165,7 +166,7 @@ def init_strategy_awaiting_sell_before():
     stock.add_indicator('SMA150')
     strategy = Strategy('SMA80_SMA150', test_buy_condition, test_sell_condition)
     strategy.refresh([stock])
-    os.rename(strategy.path, TEST_FOLDER + 'strategy_awaiting_sell_before.p')
+    os.rename(SAVE_FOLDER + strategy.path, TEST_FOLDER + 'strategy_awaiting_sell_before.p')
     
 def init_strategy_awaiting_sell_after():
     stock = Stock(TEST_AWAITING_TRADE_STOCK)
@@ -176,7 +177,7 @@ def init_strategy_awaiting_sell_after():
     stock.add_indicator('SMA150')
     strategy = Strategy('SMA80_SMA150', test_buy_condition, test_sell_condition)
     strategy.refresh([stock])
-    os.rename(strategy.path, TEST_FOLDER + 'strategy_awaiting_sell_after.p')
+    os.rename(SAVE_FOLDER + strategy.path, TEST_FOLDER + 'strategy_awaiting_sell_after.p')
     
 def init_strategy_pass():    
     stock = Stock(TEST_PASS_TRADE_STOCK)
@@ -187,7 +188,7 @@ def init_strategy_pass():
     stock.add_indicator('SMA150')
     strategy = Strategy('SMA80_SMA150', test_buy_condition, test_sell_condition)
     strategy.refresh([stock])
-    os.rename(strategy.path, TEST_FOLDER + 'strategy_pass.p')    
+    os.rename(SAVE_FOLDER + strategy.path, TEST_FOLDER + 'strategy_pass.p')    
               
 def main():
     quandl.ApiConfig.api_key = API_KEY
