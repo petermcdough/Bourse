@@ -57,9 +57,7 @@ class Strategy(File):
             while self.history[stock.name] < stock.last_date:
                 data_to_update = stock.data[self.history[stock.name]:]
                 iterator = data_to_update.itertuples()
-                row = iterator.__next__()
-                if self.last_status[stock.name] == 'awaiting buy':
-                    self.order.sell(row, self.get_awaint)
+                row = iterator.__next__()   
                 if self.last_status[stock.name] == 'pending':
                     trade = self.get_pending_trade(stock)
                     try:
@@ -96,6 +94,7 @@ class Strategy(File):
                     except StopIteration:
                         pass
                 self.history[stock.name] = row.Index
+                print(str(row.Index) + ' : ' + stock.name + ' : ' + self.last_status[stock.name])
         self.save(self)
         if verbose: print('Trades for strategy ' + str(self.name) + ' successfully updated.')
     

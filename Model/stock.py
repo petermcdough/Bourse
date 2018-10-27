@@ -53,13 +53,10 @@ class Stock(File):
         return False
         
     def add_indicator(self, indicator_name):
-        if indicator_name in self.indicators:
-            print("Indicator " + indicator_name + " already applied on stock")
-            print("Data not saved")
-            return None
         indicator = File(indicator_name, class_type = "Indicator").load()
         indicator.apply_on_stock(self)
-        self.indicators.append(indicator.name)
+        if not (indicator_name in self.indicators):
+            self.indicators.append(indicator.name)
         self.save(self)
         
     def get_position(self, date):
@@ -113,6 +110,7 @@ class Stock(File):
         })
         df.DATE = pd.to_datetime(df.DATE)
         df = df.set_index('DATE')
+        df = df.fillna(method = 'ffill')
         return df   
     
     def uptodate(self):
